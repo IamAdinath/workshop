@@ -1,28 +1,33 @@
 #!/bin/bash
 
-STACK_NAME="react-app-stack"
+set -e
 
-# Get S3 bucket name and CloudFront ID from CloudFormation outputs
-S3_BUCKET_NAME=$(aws cloudformation describe-stacks --stack-name $STACK_NAME --query "Stacks[0].Outputs[?OutputKey=='S3BucketName'].OutputValue" --output text)
-CLOUDFRONT_DISTRIBUTION_ID=$(aws cloudformation describe-stacks --stack-name $STACK_NAME --query "Stacks[0].Outputs[?OutputKey=='CloudFrontDistributionID']|[0].OutputValue" --output text)
+echo "Deploying React app to S3 and CloudFront..."
 
-if [[ -z "$S3_BUCKET_NAME" || -z "$CLOUDFRONT_DISTRIBUTION_ID" ]]; then
-  echo "Failed to retrieve CloudFormation outputs. Make sure the stack exists."
+# Read from GitHub Actions environment
+AWS_REGION=${AWS_REGION}
+UI_STACK_NAME=${UI_STACK_NAME}
+UI_BUCKET_NAME=${UI_BUCKET_NAME}
+if [[ -z "$AWS_REGION" || -z "$STACK_NAME" || -z "$UI_BUCKET_NAME" ]]; then
+  echo "Failed to retrieve GitHub Actions environment variables."
   exit 1
-else
-  echo "S3 bucket name: $S3_BUCKET_NAME"
-  echo "CloudFront distribution ID: $CLOUDFRONT_DISTRIBUTION_ID"
 fi
 
+echo "AWS Region: $AWS_REGION"
+echo "Stack Name: $UI_STACK_NAME"
+echo "Bucket Name: $UI_BUCKET_NAME"
+
 echo "Building the React project..."
-cd ui
-npm run build
 
-echo "Deploying to S3 bucket: $S3_BUCKET_NAME"
-aws s3 sync dist/ s3://$S3_BUCKET_NAME --delete
+# Get CloudFront ID from CloudFormation outputs
+CLOUDFRONT_DISTRIBUTION_ID=$(aws cloudformation describe-stacks --stack-name $STACK_NAME --query "Stacks[0].Outputs[?OutputKey=='CloudFrontDistributionID']|[0].OutputValue" --output text)
+cd ui/
 
-echo "Invalidating CloudFront cache..."
-echo $CLOUDFRONT_DISTRIBUTION_ID
+aws s3 sync dist/ s3://$UI_BUCKET_NAME --delete
+
+# Invalidate CloudFront cache
 aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
 
-echo "Deployment complete! 🚀"
+echo "Deployment complete!"
+
+cd ..
