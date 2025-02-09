@@ -8,7 +8,7 @@ echo "Deploying React app to S3 and CloudFront..."
 REGION=${REGION}
 UI_STACK_NAME=${UI_STACK_NAME}
 UI_BUCKET_NAME=${UI_BUCKET_NAME}
-if [[ -z "$REGION" || -z "$STACK_NAME" || -z "$UI_BUCKET_NAME" ]]; then
+if [[ -z "$REGION" || -z "$UI_STACK_NAME" || -z "$UI_BUCKET_NAME" ]]; then
   echo "Failed to retrieve GitHub Actions environment variables."
   exit 1
 fi
@@ -20,7 +20,7 @@ echo "Bucket Name: $UI_BUCKET_NAME"
 echo "Building the React project..."
 
 # Get CloudFront ID from CloudFormation outputs
-CLOUDFRONT_DISTRIBUTION_ID=$(aws cloudformation describe-stacks --stack-name $STACK_NAME --query "Stacks[0].Outputs[?OutputKey=='CloudFrontDistributionID']|[0].OutputValue" --output text)
+CLOUDFRONT_DISTRIBUTION_ID=$(aws cloudformation describe-stacks --stack-name $UI_STACK_NAME --query "Stacks[0].Outputs[?OutputKey=='CloudFrontDistributionID']|[0].OutputValue" --output text)
 cd ui/
 echo "changed directory"
 
