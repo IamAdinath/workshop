@@ -28,9 +28,9 @@ jobs:
           chmod +x ./ui-deploy.sh
           ./ui-deploy.sh
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          REGION: ${{ secrets.AWS_REGION }}
-          UI_STACK_NAME: ${{ vars.UI_STACK_NAME }}
-          UI_BUCKET_NAME: ${{ vars.UI_BUCKET_NAME }}
+            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            REGION: ${{ secrets.AWS_REGION }}
+            UI_STACK_NAME: ${{ vars.UI_STACK_NAME }}
+            UI_BUCKET_NAME: ${{ vars.UI_BUCKET_NAME }}
 
