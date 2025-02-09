@@ -23,11 +23,17 @@ jobs:
         with:
           node-version: "22"
 
+      - name: change Directory
+        run: cd .ui/
+
       - name: Install dependencies
         run: npm install
 
       - name: Build React app
         run: npm run build
+
+      - name: change directory back
+        run: cd ..
 
       - name: Deploy using script
         run: |
