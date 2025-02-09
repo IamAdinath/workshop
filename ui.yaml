@@ -5,7 +5,7 @@ Resources:
   WorkshopUIBucket:
     Type: "AWS::S3::Bucket"
     Properties:
-      BucketName: !Sub "workshop-ui-dev"
+      BucketName: !Sub "workshop-ui-test"
       PublicAccessBlockConfiguration:
         BlockPublicAcls: true
         BlockPublicPolicy: false

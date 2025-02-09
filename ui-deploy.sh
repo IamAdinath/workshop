@@ -5,9 +5,9 @@ set -e
 echo "Deploying React app to S3 and CloudFront..."
 
 # Read from GitHub Actions environment
-REGION="ap-south-1"
-UI_STACK_NAME="workshop-ui-dev"
-UI_BUCKET_NAME="workshop-ui-dev"
+REGION=${REGION}
+UI_STACK_NAME=${UI_STACK_NAME}
+UI_BUCKET_NAME=${UI_BUCKET_NAME}
 if [[ -z "$REGION" || -z "$UI_STACK_NAME" || -z "$UI_BUCKET_NAME" ]]; then
   echo "Failed to retrieve GitHub Actions environment variables."
   exit 1
