@@ -22,7 +22,15 @@ echo "Building the React project..."
 # Get CloudFront ID from CloudFormation outputs
 CLOUDFRONT_DISTRIBUTION_ID=$(aws cloudformation describe-stacks --stack-name $STACK_NAME --query "Stacks[0].Outputs[?OutputKey=='CloudFrontDistributionID']|[0].OutputValue" --output text)
 cd ui/
+echo "changed directory"
 
+npm install
+echo "installed depdendencies"
+
+npm run build
+echo "built project"
+
+echo "Uploading the built project to S3..."
 aws s3 sync dist/ s3://$UI_BUCKET_NAME --delete
 
 # Invalidate CloudFront cache
