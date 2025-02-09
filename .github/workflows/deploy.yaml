@@ -10,9 +10,11 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
+      AWS_ACCESS_KEY_ID: "access-key"
+      AWS_SECRET_ACCESS_KEY: "access-secret"
+      REGION: "your-aws-region"
       UI_STACK_NAME: "your-stack-name"
       UI_BUCKET_NAME: "your-s3-bucket-name"
-      REGION: "your-aws-region"
 
     steps:
       - name: Checkout code
@@ -28,9 +30,9 @@ jobs:
           chmod +x ./ui-deploy.sh
           ./ui-deploy.sh
         env:
-            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-            REGION: ${{ secrets.AWS_REGION }}
-            UI_STACK_NAME: ${{ vars.UI_STACK_NAME }}
-            UI_BUCKET_NAME: ${{ vars.UI_BUCKET_NAME }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          REGION: ${{ secrets.AWS_REGION }}
+          UI_STACK_NAME: ${{ vars.UI_STACK_NAME }}
+          UI_BUCKET_NAME: ${{ vars.UI_BUCKET_NAME }}
 
