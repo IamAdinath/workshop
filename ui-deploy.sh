@@ -20,7 +20,7 @@ echo "Bucket Name: $UI_BUCKET_NAME"
 echo "Building the React project..."
 
 # Get CloudFront ID from CloudFormation outputs
-CLOUDFRONT_DISTRIBUTION_ID=$(aws cloudformation describe-stack --stack-name $UI_STACK_NAME --query "Stacks[0].Outputs[?OutputKey=='CloudFrontDistributionID']|[0].OutputValue" --output text)
+CLOUDFRONT_DISTRIBUTION_ID=$(aws cloudformation describe-stacks --stack-name $UI_STACK_NAME --query "Stacks[0].Outputs[?OutputKey=='CloudFrontDistributionID']|[0].OutputValue" --output text)
 cd ui/
 echo "changed directory"
 
