@@ -1,0 +1,36 @@
+.container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f0f2f5, #e6e9ec); /* Smooth Background */
+    padding-top: 6rem;
+    text-align: center;
+  }
+  
+  .card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    max-width: 850px;
+    transition: 0.3s;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .heading {
+    font-size: 2.8rem;
+    font-weight: bold;
+    color: #232f3e;
+  }
+  
+  .subText {
+    font-size: 1.3rem;
+    color: #333;
+    margin-top: 0.7rem;
+  }
+  

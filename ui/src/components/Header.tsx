@@ -1,28 +1,24 @@
-// src/components/Header.tsx
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import "../styles/header.css";
+import { Menu } from "lucide-react";
 
 const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="bg-blue-600 text-white p-4">
-      <div className="container mx-auto flex justify-between items-center">
-        <h1 className="text-xl font-bold">MyApp</h1>
+    <header className="header">
+      <div className="logo">MyStore</div>
 
-        {/* Mobile Menu Toggle */}
-        <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)}>
-          {menuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+      {/* Desktop Navigation */}
+      <nav className={`nav-links ${menuOpen ? "active" : ""}`}>
+        <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
+        <Link to="/about" onClick={() => setMenuOpen(false)}>About</Link>
+        <Link to="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
+      </nav>
 
-        {/* Navigation Links */}
-        <nav className={`md:flex gap-4 ${menuOpen ? "block" : "hidden"} md:block`}>
-          <Link to="/" className="block p-2">Home</Link>
-          <Link to="/about" className="block p-2">About</Link>
-          <Link to="/contact" className="block p-2">Contact</Link>
-        </nav>
-      </div>
+      {/* Mobile Menu Button (Only visible on mobile) */}
+      <Menu className="menu-icon" onClick={() => setMenuOpen(!menuOpen)} />
     </header>
   );
 };

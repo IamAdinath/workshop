@@ -1,7 +1,12 @@
-// src/pages/Home.tsx
+import React from 'react';
+
 const Home: React.FC = () => {
-    return <div className="p-4 text-center text-xl">Welcome to Home Page</div>;
-  };
-  
-  export default Home;
-  
+  return (
+    <div style={{ textAlign: 'center', marginTop: '100px' }}>
+      <h1>Welcome to MyStore</h1>
+      <p>Your one-stop shop for everything.</p>
+    </div>
+  );
+};
+
+export default Home;
