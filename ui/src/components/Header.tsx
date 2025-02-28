@@ -15,6 +15,7 @@ const Header: React.FC = () => {
         <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
         <Link to="/about" onClick={() => setMenuOpen(false)}>About</Link>
         <Link to="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
+        <Link to="/sqft-calculator" onClick={() => setMenuOpen(false)}>SQFT Calculator</Link>
       </nav>
 
       {/* Mobile Menu Button (Only visible on mobile) */}
