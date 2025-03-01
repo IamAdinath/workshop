@@ -1,6 +1,6 @@
 import Home from "./pages/Home";
 import About from "./pages/About";
-import SqftCalculator from "./pages/SqftCalculator";
+import Estimator from "./pages/Estimator";
 // import Contact from "./pages/Contact";
 // import Blog from "./pages/Blog";
 // import Portfolio from "./pages/Portfolio";
@@ -12,7 +12,7 @@ import SqftCalculator from "./pages/SqftCalculator";
 export const routes = [
   { path: "/", element: <Home />, title: "Home - MyApp" },
   { path: "/about", element: <About />, title: "About Us - MyApp" },
-  { path: "/sqft-calculator", element: <SqftCalculator />, title: "Our Services - MyApp" },
+  { path: "/sqft-calculator", element: <Estimator />, title: "Our Services - MyApp" },
 //   { path: "/services", element: <Services />, title: "Our Services - MyApp" },
 //   { path: "/contact", element: <Contact />, title: "Contact Us - MyApp" },
 //   { path: "/blog", element: <Blog />, title: "Blog - MyApp" },
