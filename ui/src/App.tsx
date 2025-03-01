@@ -1,19 +1,20 @@
-// src/App.tsx
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Header from "./components/Header";
-import Home from "./pages/Home";
-import About from "./pages/About";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Header from './components/Header';
+import Home from './pages/Home';
+import About from './pages/About';
+import SqftCalculator from './pages/SQFTCalculator';
+import './styles/global.css';
 
 const App: React.FC = () => {
   return (
     <Router>
       <Header />
-      <div className="container mx-auto">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/sqft-calculator" element={<SqftCalculator />} />
+      </Routes>
     </Router>
   );
 };
