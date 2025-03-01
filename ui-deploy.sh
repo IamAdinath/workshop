@@ -34,7 +34,7 @@ echo "Uploading the built project to S3..."
 aws --region ${REGION} s3 sync dist/ s3://$UI_BUCKET_NAME --acl public-read --delete
 
 # Invalidate CloudFront cache
-aws --region ${REGION} cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths '/' '/*'
+aws --region ${REGION} cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths '/' '/*'
 
 echo "Deployment complete!"
 
