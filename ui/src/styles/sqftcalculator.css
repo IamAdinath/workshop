@@ -1,86 +1,126 @@
+/* Flipkart-Inspired Theme for Sqft Calculator */
 .sqft-container {
-  max-width: 800px;
+  max-width: 900px;
   margin: auto;
   padding: 20px;
-  background: #f8f9fa;
+  background: #ffffff;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  font-family: "Roboto", Arial, sans-serif;
 }
 
-h1, h2 {
+h1 {
   text-align: center;
-  color: #333;
+  color: #172337;
+  margin-bottom: 15px;
+  font-size: 24px;
+}
+
+.sqft-price-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.sqft-label {
+  color: #000000;
+  font-size: 16px;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.sqft-input {
+  width: 100px;
+  padding: 8px;
+  border: 2px solid #2874f0;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  color: black;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 10px;
-}
-
-th, td {
-  border-bottom: 1px solid #151414;
-  padding: 10px;
-  text-align: center;
-  background-color: #151414;
+  background: #fff;
 }
 
 th {
-  background: #0073e6;
-  color: white;
+  padding: 12px;
+  text-align: center;
+  background: #fb641b;
+  font-weight: bold;
+}
+
+td {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  color: black;
 }
 
 input, select {
   width: 100%;
   padding: 8px;
-  border: 1px solid #ccc;
+  border: 2px solid #ccc;
   border-radius: 4px;
+  font-size: 14px;
+  transition: border 0.3s ease-in-out;
+  background-color: white;
+  color: #172337;
+}
+
+input:focus, select:focus {
+  border-color: #2874f0;
+  outline: none;
 }
 
 .add-btn {
   display: flex;
   align-items: center;
-  gap: 5px;
-  margin: 10px auto;
-  padding: 8px 12px;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  max-width: 200px;
+  margin: 15px auto;
+  padding: 10px 15px;
   font-size: 14px;
+  font-weight: bold;
   cursor: pointer;
-  background: none;
-  color: #0073e6;
+  background: #ff9f00;
+  color: #fff;
   border: none;
+  border-radius: 4px;
+  transition: background 0.3s ease;
 }
 
 .add-btn:hover {
-  color: #005bb5;
+  background: #fb641b;
 }
 
 .remove-btn {
   background: none;
   cursor: pointer;
   padding: 4px;
+  border: none;
+}
+
+.remove-btn svg {
+  color: #d32f2f;
+  transition: color 0.3s ease;
 }
 
 .remove-btn:hover svg {
-  color: darkred;
+  color: #ff0000;
 }
 
-.transparent-btn {
-  border: none;
-  background: transparent;
-  padding: 5px;
-  cursor: pointer;
-}
-
-.sqft-label{
-  color: #151414;
-  background-color: white;
-  font-size: medium;
-  font-weight: 200;
-}
-
-.sqft-input{
-  color: #151414;
-  background-color: white;
-  width: 10%;
-  border-radius: 0cap;
+h2 {
+  text-align: right;
+  margin-top: 20px;
+  font-size: 20px;
+  color: #172337;
+  font-weight: bold;
 }
