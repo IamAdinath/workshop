@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Trash, Plus } from "lucide-react";
-import "../styles/sqftcalculator.css";
+import "../styles/estimator.css";
 
 interface Item {
   id: number;
@@ -14,7 +14,7 @@ interface Item {
 
 const furnitureOptions = ["Cupboard", "Sofa", "Dining Table", "Bed", "Chair", "Other"];
 
-const SqftCalculator: React.FC = () => {
+const Estimator: React.FC = () => {
   const [items, setItems] = useState<Item[]>([
     { id: Date.now(), name: "", customName: "", length: 0, width: 0, quantity: 1, total: 0 },
   ]);
@@ -117,4 +117,4 @@ const SqftCalculator: React.FC = () => {
   );
 };
 
-export default SqftCalculator;
+export default Estimator;
