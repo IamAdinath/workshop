@@ -61,6 +61,15 @@ Resources:
           ViewerProtocolPolicy: "redirect-to-https"
         ViewerCertificate:
           CloudFrontDefaultCertificate: true
+        CustomErrorResponses:
+          - ErrorCode: 403
+            ResponsePagePath: "/index.html"
+            ResponseCode: 200
+            ErrorCachingMinTTL: 0
+          - ErrorCode: 404
+            ResponsePagePath: "/index.html"
+            ResponseCode: 200
+            ErrorCachingMinTTL: 0
         PriceClass: "PriceClass_200"
         HttpVersion: "http2"
         DefaultRootObject: "index.html"
