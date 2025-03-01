@@ -5,30 +5,31 @@ Resources:
   WorkshopUIBucket:
     Type: "AWS::S3::Bucket"
     Properties:
-      BucketName: !Sub "workshop-ui-dev"
+      BucketName: "workshop-ui-dev"
       PublicAccessBlockConfiguration:
-        BlockPublicAcls: true
+        BlockPublicAcls: false
         BlockPublicPolicy: false
-        IgnorePublicAcls: true
+        IgnorePublicAcls: false
         RestrictPublicBuckets: false
       WebsiteConfiguration:
         IndexDocument: "index.html"
-        ErrorDocument: "index.html"
+      OwnershipControls:
+        Rules:
+          - ObjectOwnership: BucketOwnerPreferred
+    DeletionPolicy: Retain
 
   BucketPolicy:
     Type: "AWS::S3::BucketPolicy"
     Properties:
       Bucket: !Ref WorkshopUIBucket
       PolicyDocument:
+        Version: '2012-10-17'
         Statement:
-          - Effect: Allow
-            Principal:
-              Service: "cloudfront.amazonaws.com"
-            Action: "s3:GetObject"
-            Resource: !Sub "arn:aws:s3:::${WorkshopUIBucket}/*"
-            Condition:
-              StringEquals:
-                AWS:SourceArn: !Sub "arn:aws:cloudfront::${AWS::AccountId}:distribution/${ReactAppCDN}"
+          - Sid: PublicReadGetObject
+            Effect: Allow
+            Principal: '*'
+            Action: s3:GetObject
+            Resource: !Sub arn:aws:s3:::${WorkshopUIBucket}/*
 
   CloudFrontOAC:
     Type: AWS::CloudFront::OriginAccessControl
@@ -47,22 +48,20 @@ Resources:
         Enabled: true
         DefaultRootObject: "index.html"
         Origins:
-          - Id: S3Origin
-            DomainName: !GetAtt WorkshopUIBucket.RegionalDomainName
-            S3OriginConfig: {}
-            OriginAccessControlId: !Ref CloudFrontOAC
+          - CustomOriginConfig:
+              OriginProtocolPolicy: "http-only"
+            DomainName: !Join ["", [!Ref "WorkshopUIBucket", ".s3-website-", !Ref "AWS::Region", ".amazonaws.com"]]
+            Id: !Join ["", ["Custom-", !Ref "WorkshopUIBucket", ".s3-website-", !Ref "AWS::Region", ".amazonaws.com/"]]
         DefaultCacheBehavior:
-          TargetOriginId: S3Origin
-          ViewerProtocolPolicy: "redirect-to-https"
-          AllowedMethods: ["GET", "HEAD", "OPTIONS"]
-          CachedMethods: ["GET", "HEAD"]
           ForwardedValues:
             QueryString: false
-            Cookies:
-              Forward: "none"
+            Cookies: {Forward: "none"}
+            Headers: ["Origin"]
+          TargetOriginId: !Join ["", ["Custom-", !Ref "WorkshopUIBucket", ".s3-website-", !Ref "AWS::Region", ".amazonaws.com/"]]
+          ViewerProtocolPolicy: "redirect-to-https"
         ViewerCertificate:
           CloudFrontDefaultCertificate: true
-        PriceClass: "PriceClass_100"
+        PriceClass: "PriceClass_200"
         HttpVersion: "http2"
         DefaultRootObject: "index.html"
 
