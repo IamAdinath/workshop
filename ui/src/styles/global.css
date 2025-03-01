@@ -1,12 +1,14 @@
+/* Reset Styles */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
-  }
-  
-  body {
-    background: #181818; /* Dark background */
-    color: white;
-  }
-  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Light Background like Flipkart */
+body {
+  background: #f1f3f6; /* Flipkart-style background */
+  color: black;
+  min-height: 100vh;
+}
